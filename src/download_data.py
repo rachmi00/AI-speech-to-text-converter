@@ -6,6 +6,11 @@ import shutil
 from tqdm import tqdm
 import json
 import pandas as pd
+
+
+
+
+##Script to download and prepare clean speech data (LibriSpeech)
 class DownloadProgressBar(tqdm):
     """Progress bar for downloads."""
     def update_to(self, b=1, bsize=1, tsize=None):

@@ -9,7 +9,7 @@ def organize_existing_recordings():
     """
     
     base_dir = Path("data/accented")
-    raw_dir = base_dir  # Where your j1, j2, b1, etc. files are
+    raw_dir = base_dir  # Where  j1, j2, b1 files are files with initial letter and recording number
     organized_dir = base_dir / "organized"
     organized_dir.mkdir(parents=True, exist_ok=True)
     
@@ -23,10 +23,10 @@ def organize_existing_recordings():
     # Group files by speaker initial
     speaker_files = {}
     for file in audio_files:
-        # Extract initial and sentence number (e.g., 'j1' -> 'j', '1')
-        name = file.stem  # filename without extension
+        # Extract initial and sentence number 
+        name = file.stem  
         if len(name) >= 2:
-            initial = name[0].lower()  # First character (j, b, etc.)
+            initial = name[0].lower()  # First character (j, b,etc)
             sentence_num = name[1:]    # Rest of the name (1, 2, 3, etc.)
             
             if initial not in speaker_files:
@@ -53,11 +53,11 @@ def organize_existing_recordings():
     speaker_template = {
         "speaker_id": "",
         "name_initial": "",
-        "age_group": "",  # young_adult (18-30), adult (31-50), senior (50+)
+        "age_group": "",  
         "gender": "",  # M, F
-        "accent_type": "",  # francophone, anglophone, bilingual
+        "accent_type": "",  
         "native_language": "",  # French, English, Duala, etc.
-        "region": "",  # Douala, Yaoundé, Bamenda, etc.
+        "region": "", 
         "notes": ""
     }
     
@@ -69,12 +69,12 @@ def organize_existing_recordings():
         
         print(f"Processing {speaker_id} (initial: {initial}):")
         
-        # Sort files by sentence number
+    
         files = sorted(speaker_files[initial], key=lambda x: x[0])
         
         # Copy and rename files
         for sentence_num, file in files:
-            # Standardize sentence number (1, 2, 3)
+          
             try:
                 sent_num = int(sentence_num)
                 new_name = f"{speaker_id}_sent{sent_num}{file.suffix}"
@@ -96,12 +96,8 @@ def organize_existing_recordings():
         
         print(f"  Created {speaker_info_file.name}\n")
     
-    print(f"✓ Organization complete!")
-    print(f"✓ Files saved to: {organized_dir}")
-    print(f"\nNext steps:")
-    print(f"1. Fill in speaker information in each speaker_XX/speaker_info.json")
-    print(f"2. Verify all recordings are correct")
-    print(f"3. Run preprocessing script")
+    print(f" Organization complete!")
+    print(f"Files saved to: {organized_dir}")
     
     return organized_dir
 
