@@ -4,3 +4,4 @@ torch
 soundfile
 numpy
 sentencepiece
+pandas
